@@ -1,0 +1,68 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+
+const intervalos = [
+  { nombre: "Segunda mayor", semitonos: 2, img: "/intervalos/segunda_mayor.png", audio: "/intervalos/segunda_mayor.mp3" },
+  { nombre: "Tercera menor", semitonos: 3, img: "/intervalos/tercera_menor.png", audio: "/intervalos/tercera_menor.mp3" },
+  { nombre: "Tercera mayor", semitonos: 4, img: "/intervalos/tercera_mayor.png", audio: "/intervalos/tercera_mayor.mp3" },
+  { nombre: "Cuarta justa", semitonos: 5, img: "/intervalos/cuarta_justa.png", audio: "/intervalos/cuarta_justa.mp3" },
+  { nombre: "Tritono", semitonos: 6, img: "/intervalos/tritono.png", audio: "/intervalos/tritono.mp3" },
+  { nombre: "Quinta justa", semitonos: 7, img: "/intervalos/quinta_justa.png", audio: "/intervalos/quinta_justa.mp3" },
+  { nombre: "Sexta mayor", semitonos: 9, img: "/intervalos/sexta_mayor.png", audio: "/intervalos/sexta_mayor.mp3" },
+  { nombre: "Séptima menor", semitonos: 10, img: "/intervalos/septima_menor.png", audio: "/intervalos/septima_menor.mp3" },
+  { nombre: "Séptima mayor", semitonos: 11, img: "/intervalos/septima_mayor.png", audio: "/intervalos/septima_mayor.mp3" },
+  { nombre: "Octava justa", semitonos: 12, img: "/intervalos/octava_justa.png", audio: "/intervalos/octava_justa.mp3" },
+];
+
+export default function IntervalosGuitarra() {
+  const [seleccionado, setSeleccionado] = useState(null);
+
+  const reproducirAudio = () => {
+    if (seleccionado?.audio) {
+      const audio = new Audio(seleccionado.audio);
+      audio.play();
+    }
+  };
+
+  return (
+    <div className="p-4 grid gap-4 max-w-xl mx-auto">
+      <h1 className="text-2xl font-bold text-center">Guía Interactiva de Intervalos</h1>
+
+      <Select onValueChange={(val) => setSeleccionado(intervalos.find(i => i.nombre === val))}>
+        <SelectTrigger>
+          <SelectValue placeholder="Seleccioná un intervalo" />
+        </SelectTrigger>
+        <SelectContent>
+          {intervalos.map((i) => (
+            <SelectItem key={i.nombre} value={i.nombre}>
+              {i.nombre}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+
+      {seleccionado && (
+        <Card>
+          <CardContent className="p-4 grid gap-4">
+            <div>
+              <h2 className="text-xl font-semibold">{seleccionado.nombre}</h2>
+              <p className="text-muted-foreground">Distancia: {seleccionado.semitonos} semitonos</p>
+              <p>Ejemplo visual: raíz en traste 3 de la cuerda 6, nota del intervalo en traste {3 + seleccionado.semitonos} de la misma cuerda o forma en cuerda inferior si aplica.</p>
+            </div>
+            <div>
+              <Image src={seleccionado.img} alt={`Diagrama ${seleccionado.nombre}`} width={300} height={200} className="rounded-xl shadow-md" />
+            </div>
+            <div className="flex gap-2">
+              <Button onClick={reproducirAudio}>Escuchar intervalo</Button>
+              <Button variant="outline">Tocar en dispositivo virtual</Button> {/* Aquí iría la integración futura */}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}
