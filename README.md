@@ -1,58 +1,27 @@
+# Guía Interactiva de Intervalos de Guitarra
 
-# 🎸 Guía Interactiva de Intervalos en Guitarra
+Proyecto educativo para aprender intervalos musicales con apoyo visual y auditivo en guitarra.
 
-Este proyecto es una aplicación web interactiva que te permite explorar los intervalos musicales más comunes en el diapasón de la guitarra.
+## Tecnologías usadas
 
-## 🚀 Características
+- Next.js
+- React
+- Tailwind CSS
+- ShadCN UI
+- Audio e imágenes interactivas
 
-- Selección de intervalos desde un menú desplegable.
-- Visualización del intervalo con diagramas del mástil.
-- Reproducción de audio para escuchar cada intervalo.
-- Preparado para expansión con simulador de diapasón virtual.
+## Cómo correr el proyecto
 
-## 📁 Estructura de archivos
-
-```
-/public/intervalos/
-├── segunda_mayor.png
-├── segunda_mayor.mp3
-├── tercera_menor.png
-├── tercera_menor.mp3
-...
+```bash
+npm install
+npm run dev
 ```
 
-## 🧑‍💻 Instalación y uso local
+Requiere Node.js 18+
 
-1. Clonar el repositorio
-2. Instalar dependencias:
-   ```bash
-   npm install
-   ```
-3. Correr el servidor de desarrollo:
-   ```bash
-   npm run dev
-   ```
-4. Visitar `http://localhost:3000` en tu navegador.
+## Archivos recomendados
 
-## 🌍 Deploy en Vercel
-
-1. Subí el proyecto a GitHub.
-2. Importalo desde Vercel.com.
-3. Deploy automático.
-
-## 📦 Tecnologías utilizadas
-
-- React + Next.js
-- Tailwind CSS + ShadCN UI
-- Reproducción de audio HTML5
-- Soporte para imágenes y recursos estáticos
-
-## 🔜 Futuras mejoras
-
-- Integración de diapasón interactivo con Tone.js
-- Generación dinámica de patrones en el mástil
-- Accesibilidad y soporte mobile mejorado
+- `/public/intervalos/` con imágenes y audios
+- Componentes en `/components/ui/` para los estilos
 
 ---
-
-Creado con 🎵 y ☕ por [Tu Nombre].
